@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Jinhao&#39;s Blog</title>
   
-  
+  <subtitle>您好，我是jinhao</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lvjinhao821.github.io/"/>
-  <updated>2020-05-01T15:15:59.861Z</updated>
+  <updated>2020-05-02T00:37:18.862Z</updated>
   <id>https://lvjinhao821.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>Lv Jinhao</name>
     
   </author>
   
@@ -21,7 +21,7 @@
     <link href="https://lvjinhao821.github.io/2020/050116107.html"/>
     <id>https://lvjinhao821.github.io/2020/050116107.html</id>
     <published>2020-05-01T15:15:59.861Z</published>
-    <updated>2020-05-01T15:15:59.861Z</updated>
+    <updated>2020-05-02T00:37:18.862Z</updated>
     
     <summary type="html">
     
