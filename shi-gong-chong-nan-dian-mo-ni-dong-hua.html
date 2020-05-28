@@ -514,12 +514,12 @@
 <p><img src="http://qaxevdow7.bkt.clouddn.com/moni4.png" alt=""></p>
 <h4 id="三-从Revit导出模型"><a href="#三-从Revit导出模型" class="headerlink" title="三.从Revit导出模型"></a>三.从Revit导出模型</h4><p>&emsp;&emsp;Revit和3ds Max都是Autodesk公司旗下的软件，两者能够很好的互通。通常可以选择Revit内嵌的suite工作流形式、导出为FBX格式、导出为Dwg/Dxf格式或直接链接Revit模型等方式。我们主要介绍前两种方式。</p>
 <p><img src="http://qaxevdow7.bkt.clouddn.com/moni5.png" alt=""></p>
-<p>&emsp;&emsp;对以上几种方式关于数据共享和工作效率的详细对比可以参考<font siez=2>（[1]蒋绮琛,于鑫,李鑫,陈滨津.Revit与3Ds Max在施工工艺模拟中的交互应用[J].施工技术,2018,47(S4):906-909）<font></p>
-<h5 id="①工作流的方式："><a href="#①工作流的方式：" class="headerlink" title="①工作流的方式："></a>①工作流的方式：</h5><p>&emsp;&emsp;导出时如上图，3个选项都可以选择，他们之间初始设置内容有所不一样。任意选择一个都会弹出如下设置框，我只截取了一部分其他设置三者都一样均保持默认即可。刚说到3个选项初始设置内容不一样其实就是下图中勾选的内容不一样。我们需要注意的是只用勾选最后一项“自动平滑相邻面”。像灯光、日光系统、相机我们通常都不会用到，我们后面会讲到，我们使用的是V-Ray渲染器里的灯光和相机。</p>
+<p>&emsp;&emsp;对以上几种方式关于数据共享和工作效率的详细对比可以参考（[1]蒋绮琛,于鑫,李鑫,陈滨津.Revit与3Ds Max在施工工艺模拟中的交互应用[J].施工技术,2018,47(S4):906-909）</p>
+<h5 id="1-工作流的方式："><a href="#1-工作流的方式：" class="headerlink" title="1.工作流的方式："></a>1.工作流的方式：</h5><p>&emsp;&emsp;导出时如上图，3个选项都可以选择，他们之间初始设置内容有所不一样。任意选择一个都会弹出如下设置框，我只截取了一部分其他设置三者都一样均保持默认即可。刚说到3个选项初始设置内容不一样其实就是下图中勾选的内容不一样。我们需要注意的是只用勾选最后一项“自动平滑相邻面”。像灯光、日光系统、相机我们通常都不会用到，我们后面会讲到，我们使用的是V-Ray渲染器里的灯光和相机。</p>
 <p>&emsp;&emsp;合并实体一栏记得更换为不要合并。默认选项为按族类型合并，故名思议相同族类型下的多个构件将会变成一个整体，这样往往会给我们带来麻烦，记得要去切换。</p>
 <p>&emsp;&emsp;点击运行后，会自动启动3ds Max,将模型导入。</p>
 <p><img src="http://qaxevdow7.bkt.clouddn.com/moni6.png" alt=""></p>
-<h5 id="②FBX格式："><a href="#②FBX格式：" class="headerlink" title="②FBX格式："></a>②FBX格式：</h5><p>&emsp;&emsp;FBX格式是三维通用模型格式，可以用在目前几乎所有主流的三维软件中。包含动画、材质特性、贴图、灯光、摄像机等信息。</p>
+<h5 id="2-FBX格式："><a href="#2-FBX格式：" class="headerlink" title="2.FBX格式："></a>2.FBX格式：</h5><p>&emsp;&emsp;FBX格式是三维通用模型格式，可以用在目前几乎所有主流的三维软件中。包含动画、材质特性、贴图、灯光、摄像机等信息。</p>
 <p>&emsp;&emsp;将保存好的FBX格式导入3ds Max，同理取消勾选摄影机，和灯光。</p>
 <p><img src="http://qaxevdow7.bkt.clouddn.com/moni7.png" alt=""></p>
 <hr>
