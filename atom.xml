@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lvjinhao821.github.io/"/>
-  <updated>2020-05-29T05:04:56.333Z</updated>
+  <updated>2020-06-03T12:32:42.283Z</updated>
   <id>https://lvjinhao821.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端案例实操（一）</title>
+    <link href="https://lvjinhao821.github.io/qian-duan-an-li-shi-cao-yi.html"/>
+    <id>https://lvjinhao821.github.io/qian-duan-an-li-shi-cao-yi.html</id>
+    <published>2020-06-03T02:32:50.000Z</published>
+    <updated>2020-06-03T12:32:42.283Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;创建文件结构&quot;&gt;&lt;a href=&quot;#创建文件结构&quot; class=&quot;headerlink&quot; title=&quot;创建文件结构&quot;&gt;&lt;/a&gt;创建文件结构&lt;/h3&gt;&lt;p&gt;在项目开始之前，创建好一个文件夹，里面的内容如下&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="web前端开发" scheme="https://lvjinhao821.github.io/categories/web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="静态页面" scheme="https://lvjinhao821.github.io/tags/%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2/"/>
+    
+      <category term="案例实操" scheme="https://lvjinhao821.github.io/tags/%E6%A1%88%E4%BE%8B%E5%AE%9E%E6%93%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>Chrome浏览器正确打开方式</title>
