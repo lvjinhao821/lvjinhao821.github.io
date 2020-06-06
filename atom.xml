@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lvjinhao821.github.io/"/>
-  <updated>2020-06-03T12:48:32.960Z</updated>
+  <updated>2020-06-06T12:36:51.496Z</updated>
   <id>https://lvjinhao821.github.io/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>网站设计的用户体验（UX）</title>
+    <link href="https://lvjinhao821.github.io/wang-zhan-she-ji-de-yong-hu-ti-yan.html"/>
+    <id>https://lvjinhao821.github.io/wang-zhan-she-ji-de-yong-hu-ti-yan.html</id>
+    <published>2020-06-04T03:38:02.000Z</published>
+    <updated>2020-06-06T12:36:51.496Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一-前序&quot;&gt;&lt;a href=&quot;#一-前序&quot; class=&quot;headerlink&quot; title=&quot;一.前序&quot;&gt;&lt;/a&gt;&lt;center&gt;一.前序&lt;/center&gt;&lt;/h2&gt;&lt;p&gt;&amp;emsp;    UX是User
+        
+      
+    
+    </summary>
+    
+    
+      <category term="web前端开发" scheme="https://lvjinhao821.github.io/categories/web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="网站设计" scheme="https://lvjinhao821.github.io/tags/%E7%BD%91%E7%AB%99%E8%AE%BE%E8%AE%A1/"/>
+    
+      <category term="UX" scheme="https://lvjinhao821.github.io/tags/UX/"/>
+    
+  </entry>
+  
+  <entry>
     <title>前端案例实操（一）</title>
     <link href="https://lvjinhao821.github.io/qian-duan-an-li-shi-cao-yi.html"/>
     <id>https://lvjinhao821.github.io/qian-duan-an-li-shi-cao-yi.html</id>
     <published>2020-06-03T02:32:50.000Z</published>
-    <updated>2020-06-03T12:48:32.960Z</updated>
+    <updated>2020-06-03T16:02:33.906Z</updated>
     
     <summary type="html">
     
