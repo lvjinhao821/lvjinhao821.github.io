@@ -462,14 +462,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.2k
+                    10.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    34 分
+                    37 分
                 </div>
                 
 
@@ -1033,7 +1033,64 @@ removed <span class="token operator">=</span> colors<span class="token punctuati
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">alert</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//15</span></code></pre>
 <p>第一次执行调用函数，prev是1，cur是2；第二次，prev是3(1+2的结果)，cur是3(数组第三项)。整个过程会把数组中的每一项都访问一遍。</p>
-
+<h3 id="Date类型"><a href="#Date类型" class="headerlink" title="Date类型"></a>Date类型</h3><p>65.JavaScript中Date对象用来表示日期和时间，可通过new操作符和Date构造函数可<strong>获取当前系统时间</strong>。但不能保证准确，系统时间人为可以改动。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//Mon Jun 08 2020 17:12:48 GMT+0800(中国标准时间)</span>
+<span class="token comment" spellcheck="true">/*
+now.getFullYear();      //2020 (年份)
+now.getMonth();         //5  (月份 0开始 0-11)
+now.getDate();          //8  (号数)
+now.getDay();           //1  (星期一)
+now.getHours();         //17 (小时，24小时制)
+now.getMinutes();       //12 (分钟)
+now.getSenconds();      //48 (秒)
+now,getMilliseconds();  //   (毫秒数)
+now.getTime();          //  (以number形式表示的时间戳)
+*/</span>
+<span class="token comment" spellcheck="true">//更多方法见p102</span></code></pre>
+<p>66.要想<strong>创建特定的日期和时间</strong>，可以像Date构造函数传入参数，该参数必须是表示该日期的<strong>时间戳</strong>（即从UTC时间1970年1月1日午夜起至特定日期和时间经过的毫秒数），时间戳可通过Date.parse()和DateUTC()方法来获得。</p>
+<ul>
+<li><p>Date.parse()——接收一个表示日期的字符串参数，然后尝试根据这个字符串返回相应日期的时间戳。传入的字符串参数要符合特定格式参见（p99），如果格式不正确就会返回NaN。</p>
+</li>
+<li><p>DateUTC()——也返回相应时间戳，但传入参数的格式不一样：年份、基于0的月份、号数、小时数、分钟、秒、毫秒。只有两个参数（年和月）是必须的，没提供号数就默认为1，其他参数默认为0。</p>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> someDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">"6/13/2004"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> someDate2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">UTC</span><span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">48</span><span class="token punctuation">,</span><span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>事实上，Date构造函数也会直接根据参数形式，在后台调用以上方法。也就是说可以在Date中直接传入符合格式的参数。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> someDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">"6/13/2004"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> someDate2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2020</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">48</span><span class="token punctuation">,</span><span class="token number">123</span><span class="token punctuation">)</span></code></pre>
+<p>67.ECMAScript5添加了<strong>Date.now()</strong>方法，返回表示调用这个方法的日期和时间的时间戳，简化了使用Date对象分析代码的工作。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> start <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//取得开始时间</span>
+<span class="token comment" spellcheck="true">/*代码*/</span>
+<span class="token keyword">var</span> stop <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//取得结束时间</span>
+result <span class="token operator">=</span> stop <span class="token operator">-</span> start<span class="token punctuation">;</span></code></pre>
+<p>68.Date类型<strong>重写了toLocaleString()、toString()、valueOf()</strong>方法。</p>
+<ul>
+<li>Date类型的toLocaleString()方法，会按照与浏览器设置地区相适应的格式返回字符串。以为着时间格式中会包含AM和PM，但没时区信息。</li>
+<li>Date类型的toString()方法，通常会返回带有时区信息的日期和时间，时间一般以军用时间(小时范围是0-23)表示。</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">1435416562875</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//2015/6/27 下午10:49:22</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//Sat Jun 27 2015 22:49:22 GMT+0800 (中国标准时间)</span></code></pre>
+<p>这两方法的差别仅在调试代码时比较有用，而在显示日期和时间时没有什么价值。</p>
+<ul>
+<li>Date类型的valueOf()方法，返回的不是字符串，而是日期的时间戳。因此可方便的使用比较操作符来比较日期的值。</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> date1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2007</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> date2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2007</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>date1 <span class="token operator">&lt;</span> date2<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//true</span>
+<span class="token comment" spellcheck="true">//应该会默认调用valueOf()方法，然后再进行比较的</span></code></pre>
+<p>69.Date对象是按浏览器所在时区显示的，同一个时刻在不同时区显示的结果是不一样的；但在任意一个时刻时间戳是完全一致的。不同时区的时间可以和时间戳相互转换，因此通过时间戳做媒介，可以<strong>转换为任意时区时间</strong>。</p>
+<ul>
+<li>toLocaleString()——转换为当地时间</li>
+<li>toUTCString()——转换为世界统一时间，不属于任何时区。</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">1435416562875</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//转换为当地时间</span>
+d<span class="token punctuation">.</span><span class="token function">toUTCString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true">//转换为世界统一时间，不属于任何时区。</span></code></pre>
+<p>70.date类型还有一些将<strong>日期格式化为字符串的方法</strong>（p101）</p>
+<h3 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h3>
             </div>
             <hr/>
 
