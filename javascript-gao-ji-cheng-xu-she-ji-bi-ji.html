@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JavaScript高级程序设计笔记, BIM 信息技术">
+    <meta name="keywords" content="JavaScript笔记, BIM 信息技术">
     <meta name="description" content="前端开发 BIM 学习分享网站">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -28,7 +28,7 @@
 </script>
 
 
-    <title>JavaScript高级程序设计笔记 | Jh&#39;s Blog</title>
+    <title>JavaScript笔记 | Jh&#39;s Blog</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/lvjinhao821/lvjinhao821.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/lvjinhao821/lvjinhao821.github.io/libs/awesome/css/all.css">
@@ -301,12 +301,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lvjinhao821/lvjinhao821.github.io/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/lvjinhao821/lvjinhao821.github.io/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JavaScript高级程序设计笔记</h1>
+                    <h1 class="description center-align post-title">JavaScript笔记</h1>
                 </div>
             </div>
         </div>
@@ -462,14 +462,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.1k
+                    11.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    37 分
+                    43 分
                 </div>
                 
 
@@ -1090,7 +1090,95 @@ console<span class="token punctuation">.</span><span class="token function">log<
 d<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//转换为当地时间</span>
 d<span class="token punctuation">.</span><span class="token function">toUTCString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true">//转换为世界统一时间，不属于任何时区。</span></code></pre>
 <p>70.date类型还有一些将<strong>日期格式化为字符串的方法</strong>（p101）</p>
-<h3 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h3>
+<h3 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h3><p>正则表达式是一种用来匹配字符串的强有力的武器。其思想是用一种描述性的语言来给字符串定义一个规则，凡符合规则的字符串就认为匹配了，否则该字符串就是不合法的。ECMAScript通过RegExp类型来支持正则表达式。</p>
+<p>71.用字符串来描述字符；</p>
+<ul>
+<li>直接给出字符就是进准匹配</li>
+<li><strong>\d</strong>匹配一个数字； <strong>\w</strong>匹配一个字母或数字 ； <strong>\s</strong>匹配一个空格(包括tab等空白符)</li>
+<li><strong>.</strong> 匹配任意一个字符；*****匹配任意个字符(包括0个)</li>
+<li><strong>+</strong>至少匹配一个字符；<strong>？</strong>表示0个或1个字符</li>
+<li><strong>{n}</strong>表示n个字符；<strong>{n,m}</strong>表示n-m个字符</li>
+<li><strong>\</strong>  对特殊字符转义</li>
+<li><strong>[ ]</strong>表示范围——[0-9a-zA-Z\_]可以匹配一个数字、字母或下划线</li>
+<li>*<em>A|B *</em>可以匹配A或B</li>
+<li><strong>^</strong>   表示行的开头——^\d 必须数字开头</li>
+<li><strong>$</strong>   表示行的结束——\d$ 必须数字结尾</li>
+</ul>
+<p>72.两种创建正则表达式的方式；</p>
+<ul>
+<li><p>以字面量的形式来定义正则表达式，模式(patter)部分可以是任何简单或复杂的正则表达式；标志(flags)可以带有一个或多个，用来表达正则表达式的行为（g:全局模式、i:忽略大小写模式、m:多行匹配模式）。模式用使用的元字符<strong>（[{\^$|)?<em>+.]} *</em> 需要用</strong>\**进行转义</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> expression <span class="token operator">=</span> <span class="token operator">/</span> pattern <span class="token operator">/</span> flags<span class="token punctuation">;</span>
+<span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token regex">/[bc]at/i</span><span class="token punctuation">;</span>             <span class="token comment" spellcheck="true">//匹配第一个"bat"或"cat"，不区分大小写</span></code></pre>
+</li>
+<li><p>使用new操作符和RegExp构造函数，接收两个参数：第一个是要匹配的字符串模式、另一个是可选的标志字符串。由于RegExp构造函数的模式参数是字符串，因此对所用的所有元字符要进行双重转义（<strong>\</strong>的要变成<strong>\\</strong>）。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">"[bc]at"</span><span class="token punctuation">,</span> <span class="token string">"i"</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//匹配第一个"bat"或"cat"，不区分大小写</span></code></pre>
+</li>
+</ul>
+<p>73.RegExp的每个<strong>实例都具有下列属性</strong>，这些属性可以取得有关模式的各种信息；</p>
+<ul>
+<li><strong>lastIndex</strong>:整数，表示开始搜索下一个匹配项的字符位置，从0算起。</li>
+<li><strong>source</strong>:正则表达式的字符串表示，安装字面量的形式而非传入构造函数中的字符串模式返回。</li>
+<li>p105</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">"\\[bc\\]at"</span><span class="token punctuation">,</span> <span class="token string">"i"</span><span class="token punctuation">)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>pattern<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//0</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>pattern<span class="token punctuation">.</span>source<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">// "\[bc\]at"</span></code></pre>
+<h4 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h4><p>74.RegExp对象的主要方法是<strong>exec()</strong>，该方法是专门为<strong>捕获组</strong>而设计的。（  ）表示的就是一个组，定义完组后，就可通过exec()方法将内容提取出来。该方法接收一个参数：要应用模式的字符串。返回一个数组，数组中第一项是与整个模式匹配的字符串，其他项是与模式中的捕获组匹配的字符串。没有匹配到任何项的时候返回null。返回的数组虽然是Array的实例，但包含了两个额外的属性;  <strong>index</strong>:表示匹配项在字符串中的位置，<strong>input</strong>表示应用正则表达式的字符串。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> re <span class="token operator">=</span> <span class="token regex">/^(\d{3})-(\d{3,8})$/</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> marches <span class="token operator">=</span> re<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'010-12345'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//['010-12345','010','12345']</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>marches<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//0</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>marches<span class="token punctuation">.</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//'010-12345'</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>marches<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//'010-12345'</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>marches<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//'010'</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>marches<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//'12345'</span></code></pre>
+<p><strong>如果模式中没有定义组</strong>，则exec()只返回一个最先匹配的项。如果有g标注，每次调用exec()则都会在字符串中继续查找新匹配项。如果没有g，则不管调用多少次，返回的始终是第一个匹配的项。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">"cat, bat, sat, fat"</span>
+<span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token regex">/.at/g</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> matches <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>matches<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//0</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>matches<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">//cat</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>pattern<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//3</span>
+
+matches <span class="token operator">=</span> pattern<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//再次调用</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>matches<span class="token punctuation">.</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">//5</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>matches<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">//bat</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>pattern<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//8</span></code></pre>
+<h4 id="test"><a href="#test" class="headerlink" title="test()"></a>test()</h4><p>75.RegExp对象还有一个<strong>test()</strong>方法，用于<strong>测试给定字符串是否符合要求</strong>。它接受一个字符串参数，在模式与参数匹配的情况下返回true,否则返回false。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">"000-00-0000"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token regex">/\d{3}-\d{2}-\d{4}/</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//true</span></code></pre>
+<h4 id="toLocaleString-、toString"><a href="#toLocaleString-、toString" class="headerlink" title="toLocaleString()、toString()"></a>toLocaleString()、toString()</h4><p>76.RegExp对象继承的toLocaleString()和toString()方法都会<strong>返回正则表达式的字面量</strong>，与创建正则表达式的方式无关。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">"\\[bc\\]at"</span><span class="token punctuation">,</span> <span class="token string">"gi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// /\[bc\]at/gi</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">// /\[bc\]at/gi</span></code></pre>
+<p>77.<strong>RegExp构造函数属性</strong>，适用于作用域中所有正则表达式，<strong>基于所执行的最近一次正则表达式操作而变化</strong>。</p>
+<ul>
+<li><p>input (简写为$_) 最近一次要匹配的字符串。</p>
+</li>
+<li><p>lastMatch(简写$&amp;) 最近一次的匹配项</p>
+</li>
+<li><p>leftContext(简写$`) input字符串中lastMatch之前的文本</p>
+</li>
+<li><p>rightContext(简写$’) input字符串中lastMatch之后的文本</p>
+</li>
+<li><p>lastParen(简写$+) 最近一次匹配的捕获组。</p>
+</li>
+<li><p>multiline(简写$*) 布尔值，表示是否所有表达式都使用多行模式。</p>
+</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> text <span class="token operator">=</span><span class="token string">"you are in haorooms 博客，看文章呢"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> pattern <span class="token operator">=</span><span class="token regex">/(.)aorooms/g</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>pattern<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RegExp<span class="token punctuation">[</span><span class="token string">"$_"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//you are in haorooms 博客，看文章呢</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RegExp<span class="token punctuation">.</span>lastMatch<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//haorooms</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RegExp<span class="token punctuation">.</span>leftContext<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//you are in</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RegExp<span class="token punctuation">.</span>rightContext<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//博客，看文章呢</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RegExp<span class="token punctuation">[</span><span class="token string">"$+"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//h</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RegExp<span class="token punctuation">[</span><span class="token string">"$*"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//false</span>
+<span class="token punctuation">}</span></code></pre>
+<p>78.ECMAScript正则表达式不支持的一些高级正则表达式特性见p109</p>
+
             </div>
             <hr/>
 
@@ -1598,9 +1686,9 @@ d<span class="token punctuation">.</span><span class="token function">toUTCStrin
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lvjinhao821/lvjinhao821.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="JavaScript高级程序设计笔记">
+                        <img src="https://cdn.jsdelivr.net/gh/lvjinhao821/lvjinhao821.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="JavaScript笔记">
                         
-                        <span class="card-title">JavaScript高级程序设计笔记</span>
+                        <span class="card-title">JavaScript笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1661,12 +1749,11 @@ d<span class="token punctuation">.</span><span class="token function">toUTCStrin
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            要熟悉所有API，并知道在某些场景下的实际应用。
-字符串557. 反转字符串中的单词 III
+                            字符串557. 反转字符串中的单词 III
 思路：把每个单词单独拿出来，反转顺序。
 解题过程：
 1.split()方法将字符串按空格分隔，得到4个单词的数组。
-2.遍历该数组，可以用map(
+2.遍历该数组，可以用map()方法对每个元素，都应用后面的函数，函数的功能是将
                         
                     </div>
                     <div class="publish-info">

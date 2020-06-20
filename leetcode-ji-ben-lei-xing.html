@@ -462,14 +462,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    445
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -483,10 +483,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>要熟悉所有API，并知道在某些场景下的实际应用。</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="557-反转字符串中的单词-III"><a href="#557-反转字符串中的单词-III" class="headerlink" title="557. 反转字符串中的单词 III"></a><a href="https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/" target="_blank" rel="noopener">557. 反转字符串中的单词 III</a></h3><p><img src="http://qaxevdow7.bkt.clouddn.com/suanfa1.png" alt=""></p>
-<p>思路：把每个单词单独拿出来，反转顺序。</p>
-<p>解题过程：</p>
+                <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="557-反转字符串中的单词-III"><a href="#557-反转字符串中的单词-III" class="headerlink" title="557. 反转字符串中的单词 III"></a>557. 反转字符串中的单词 III</h3><p><img src="http://qaxevdow7.bkt.clouddn.com/suanfa1.png" alt=""></p>
+<p><strong>思路</strong>：把每个单词单独拿出来，反转顺序。</p>
+<p><strong>解题过程</strong>：</p>
 <p>1.<strong>split()</strong>方法将字符串按空格分隔，得到4个单词的数组。</p>
 <p>2.遍历该数组，可以用<strong>map()</strong>方法对每个元素，都应用后面的函数，函数的功能是将每个单词进行反转。</p>
 <p>3.函数具体的实现是将每个单词拆分成单独的数组。然后利用数组的<strong>reverse()</strong>方法对单词的字符反转排序，反转完成后利用<strong>join()</strong>将数组中所有元素转换成一个字符串。</p>
@@ -510,12 +509,74 @@
         <span class="token keyword">return</span> item<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<p>知识点：</p>
+<p><strong>知识点</strong>：</p>
 <p>String.prototype.split</p>
 <p>String.prototype.match</p>
 <p>Array.prototype.map</p>
 <p>Array.prototype.reverse </p>
 <p>Array.prototype.join</p>
+<p><strong>总结</strong>：要熟悉所有API，并知道在某些场景下的实际应用。</p>
+<hr>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="17-电话号码的字母组合"><a href="#17-电话号码的字母组合" class="headerlink" title="17. 电话号码的字母组合"></a>17. 电话号码的字母组合</h3><p><img src="http://qaxevdow7.bkt.clouddn.com/suanfa3.png" alt=""></p>
+<p><strong>思路</strong>：</p>
+<p>1.将用户输入的数字拆分成数组。234 =&gt; [2,3,4]</p>
+<p>2.将拆分好的数组，每一项映射对应按键的字母。2 =&gt; abc、3 =&gt; def、4 =&gt; ghi</p>
+<p>3.前面两个如“abc”和“def”用循环嵌套的方式进行组合，组合完成的结果在于第三个“ghi”进行组合。</p>
+<p>4.全部组合完成以后，就把组合的结果进行输出即可。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> letterCombinations <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//简历电话号码键盘的映射</span>
+    <span class="token keyword">let</span> map <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token string">'1'</span><span class="token punctuation">,</span><span class="token string">'abc'</span><span class="token punctuation">,</span><span class="token string">'def'</span><span class="token punctuation">,</span><span class="token string">'ghi'</span><span class="token punctuation">,</span><span class="token string">'jkl'</span><span class="token punctuation">,</span><span class="token string">'mno'</span><span class="token punctuation">,</span><span class="token string">'pqrs'</span><span class="token punctuation">,</span><span class="token string">'tuv'</span><span class="token punctuation">,</span><span class="token string">'wxyz'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//将用户输入的字符串，拆分成数组 如234 => [2,3,4]</span>
+    <span class="token keyword">let</span> num <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//保存键盘映射后的字母，如[2,3,4] => ['abc','def','ghi']</span>
+    <span class="token keyword">let</span> code <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    num<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>item <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>map<span class="token punctuation">[</span>item<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            code<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>map<span class="token punctuation">[</span>item<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//创建用于组合函数</span>
+    comb <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//临时保存两项的组合结果</span>
+        <span class="token keyword">let</span> tmp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//外层循环的是遍历数组第一个元素，里层的循环是遍历数组的第二个元素</span>
+        <span class="token comment" spellcheck="true">//for-of是可以循环字符串！！组合完成后添加进tmp数组里。</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> t <span class="token keyword">of</span> arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> s <span class="token keyword">of</span> arr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                tmp<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>t<span class="token operator">+</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//前两项组合的结果放在了tmp里，因此用tmp里的结果直接替换掉前两项</span>
+        arr<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span>tmp<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">//如果数组里的元素大于1，就继续进行迭代。等于1就直接输出结果就行</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>arr<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token function">comb</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> tmp<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">//最后其实tmp和arr[0]结果是一样的，函数最后返回arr[0]</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//调用该函数</span>
+    <span class="token keyword">return</span> <span class="token function">comb</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><strong>知识点</strong>：</p>
+<p>Array.prototype.splice</p>
+<p><strong>总结</strong>：找到规律才是算法能解决的前提</p>
+<h3 id="605-种花问题"><a href="#605-种花问题" class="headerlink" title="605. 种花问题"></a>605. 种花问题</h3><p><img src="http://qaxevdow7.bkt.clouddn.com/suanfa2.png" alt=""></p>
+<p><strong>思路</strong>：循环这个数组，如果当前位置值为0，且左右两边值不为1（巧妙避开了边界问题），则该位置就可以栽树，计数器加1就行。最后判断计数器的值是否大于或等于n。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> canPlaceFlowers <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>flowerbed<span class="token punctuation">,</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//计数器</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> length <span class="token operator">=</span> flowerbed<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 注意，数组越界了也不会报错！因为js的数组可以延长的,越界了值为undefined</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>flowerbed<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> flowerbed<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> flowerbed<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      num<span class="token operator">++</span><span class="token punctuation">;</span>
+      i<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> n <span class="token operator">&lt;=</span> num<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><strong>总结</strong>：问题抽象，数学建模，动态输入（不断去调整输入，跟自己的思路进行校验）</p>
+<hr>
 
             </div>
             <hr/>
@@ -1023,9 +1084,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/lvjinhao821/lvjinhao821.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="JavaScript高级程序设计笔记">
+                        <img src="https://cdn.jsdelivr.net/gh/lvjinhao821/lvjinhao821.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="JavaScript笔记">
                         
-                        <span class="card-title">JavaScript高级程序设计笔记</span>
+                        <span class="card-title">JavaScript笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
