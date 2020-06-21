@@ -462,14 +462,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.4k
+                    14k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    43 分
+                    52 分
                 </div>
                 
 
@@ -1178,6 +1178,151 @@ matches <span class="token operator">=</span> pattern<span class="token punctuat
    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>RegExp<span class="token punctuation">[</span><span class="token string">"$*"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">//false</span>
 <span class="token punctuation">}</span></code></pre>
 <p>78.ECMAScript正则表达式不支持的一些高级正则表达式特性见p109</p>
+<h3 id="Function-类型"><a href="#Function-类型" class="headerlink" title="Function 类型"></a>Function 类型</h3><p>79.ECMAScript中函数实际上是对象，与其他引用类型一样具有属性和方法。因此<strong>函数名</strong>实际上是一个指向函数对象的<strong>指针</strong>，不会与某个函数绑定。所以函数<strong>没有重载</strong>，创建第二个同名函数时，实际上覆盖了引用第一个函数的变量。</p>
+<p>80.函数的<strong>创建方式</strong>；</p>
+<ul>
+<li>①函数声明语法定义</li>
+<li>②函数表达式定义函数</li>
+<li>③使用Function构造函数（不推荐）——最后一个参数始终都被看成函数体，前面的参数则枚举出了新函数的参数。不推荐使用的原因是，会导致解析两次代码影响性能，第一次是解析ECMAScript代码，第二次是解析传入构造函数中的字符串。</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//     1</span>
+<span class="token keyword">function</span> sum <span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> num1 <span class="token operator">+</span> num2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//     2</span>
+<span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> num1 <span class="token operator">+</span> num2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//     3</span>
+<span class="token keyword">var</span> sum <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">function</span><span class="token punctuation">(</span><span class="token string">"num1"</span><span class="token punctuation">,</span> <span class="token string">"num2"</span><span class="token punctuation">,</span> <span class="token string">"return num1 + num2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>解析器在向执行环境中<strong>加载数据时</strong>，对函数声明和函数表达式并非一视同仁。解析器会先读取函数声明，并使其在任何代码之前可用。至于函数表达式，则必须等到解析器执行到它所在代码行，才会正在解释执行。除了这一点，两者语法是等价的。</p>
+<p>81.因为ECMAScript中函数名本身就是变量，因此函数既可以作为其他函数的参数，也能作为其他函数的返回值。对于函数名来说带括号就是执行函数，不带括号就是指针。</p>
+<h4 id="arguments、this"><a href="#arguments、this" class="headerlink" title="arguments、this"></a>arguments、this</h4><p>82.函数内部有两个<strong>特殊的对象：arguments 和 this</strong>；</p>
+<ul>
+<li><p><strong>arguments</strong>是一个类数组对象，包含着传入函数中的所有参数。这个对象还有一个名叫<strong>callee</strong>的<strong>属性</strong>，该属性是一个指针，指向拥有这个arguments对象的函数。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//阶乘函数</span>
+<span class="token keyword">function</span> <span class="token function">factorial</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> num <span class="token operator">*</span> arguments<span class="token punctuation">.</span><span class="token function">callee</span><span class="token punctuation">(</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>利用arguments.callee的方式，指向当前所在函数，即使函数名变动，函数也能正常执行。</p>
+</li>
+<li><p><strong>this</strong> 引用的是函数执行的环境对象。</p>
+<pre class=" language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">"red"</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//全局对象的color属性</span>
+<span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>color<span class="token punctuation">:</span> <span class="token string">"blue"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//对象o里的color属性</span>
+<span class="token keyword">function</span> <span class="token function">sayColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">sayColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//"red",是在全局作用域中调用sayColor(),this指向的是window</span>
+o<span class="token punctuation">.</span>sayColor <span class="token operator">=</span> sayColor<span class="token punctuation">;</span>
+o<span class="token punctuation">.</span><span class="token function">sayColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//"blue",函数赋给对象O并调用sayColor()时，this引用的对象是O</span></code></pre>
+</li>
+<li><p>ECMAScript5，函数对象有个<strong>caller属性</strong>，这个属性中保存着调用当前函数的函数应用。如果是在全局作用域中调用当前函数，它值为null。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">outer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span>arguments<span class="token punctuation">.</span>callee<span class="token punctuation">.</span>caller<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token function">outer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//会显示outer()函数的源代码</span></code></pre>
+</li>
+</ul>
+<h4 id="length、prototype"><a href="#length、prototype" class="headerlink" title="length、prototype"></a>length、prototype</h4><p>83.每个函数对象都*<em>包含两个属性：length 和 prototype *</em>；</p>
+<ul>
+<li><p><strong>length属性</strong>表示函数所希望接收的命名参数的个数。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> num1 <span class="token operator">+</span> num2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>sum<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//2</span></code></pre>
+</li>
+<li><p><strong>prototype属性</strong>，对于ECMAScript中的引用类型而言，prototype是保存它们所有实例方法的真正所在。诸如toString()和valueOf()等方法实际上都是保存在prototype名下，只不过是通过各自对象的实例访问罢了。其不可枚举，因此使用for-in无法发现。</p>
+</li>
+</ul>
+<h4 id="apply-、call-、bind"><a href="#apply-、call-、bind" class="headerlink" title="apply()、call()、bind()"></a>apply()、call()、bind()</h4><p>84.每个函数对象都<strong>包含两个非继承而来的方法：apply()和call() ；</strong></p>
+<ul>
+<li><strong>apply()</strong>——接收两个参数：在其中运行的作用域、参数数组(可以是Array的实例，也可以是arguments对象)。</li>
+<li><strong>call()</strong>——接收两个参数：在其中运行的作用域、参数一个一个罗列出来。</li>
+</ul>
+<p>这两个方法的用途都是在特定域中调用函数，实际上等于设置this对象的值。他们强大的地方在于 能够扩充函数赖以运行的作用域。</p>
+<pre class=" language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">"red"</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">//全局对象的color属性</span>
+<span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>color<span class="token punctuation">:</span> <span class="token string">"blue"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//对象o里的color属性</span>
+<span class="token keyword">function</span> <span class="token function">sayColor</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">"喜欢 "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">sayColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//"red"</span>
+
+sayColor<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>jinhao<span class="token punctuation">]</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">//"jinhao喜欢 red"</span>
+sayColor<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> jinhao<span class="token punctuation">)</span>     <span class="token comment" spellcheck="true">//"jinhao喜欢 red"</span>
+sayColor<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> jinhao<span class="token punctuation">)</span>          <span class="token comment" spellcheck="true">//"jinhao喜欢 blue"</span></code></pre>
+<ul>
+<li><p>ECMAScript5还定义了一个<strong>bind()</strong>方法，上面说的无论是 call() 也好， apply() 也好，都是立马就调用了对应的函数，而 bind() 不会， bind() 会生成一个新的函数，bind() 函数的参数跟 call() 一致。 bind() 生成的新函数返回后，你想什么时候调就什么时候调。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//同上</span>
+<span class="token keyword">var</span> objectSayColor <span class="token operator">=</span> sayColor<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">objectSayColor</span><span class="token punctuation">(</span>jinhao<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//"jinhao喜欢 blue"</span></code></pre>
+</li>
+</ul>
+<p>85.每个函数<strong>继承的toLocaleString()、toString()和valueOf()方法始终都返回函数的代码</strong>，返回代码的格式因不同浏览器而异，由于存在这些差异，午发依据这两个方法返回的结果实现任何重要功能，不过调试代码时到挺有用。</p>
+<h3 id="基本包装类型"><a href="#基本包装类型" class="headerlink" title="基本包装类型"></a>基本包装类型</h3><p>86.这段来自作者<a href="https://segmentfault.com/a/1190000021961278" target="_blank" rel="noopener">君额上似可跑马</a>，对于基本包装类型的介绍，写的很完善，很好，就直接复制了。</p>
+<p>在 ES 中，数据的分类分为基本数据类型和引用类型。<br>而基本包装类型，严格来说不属于上面两个中的任意一个，但是又和这两种类型息息相关。</p>
+<p><strong>基本数据类型</strong>和<strong>引用类型</strong>这两个类型其中一个很明显的<strong>区别</strong>是，引用类型有自己内置的方法，也可以自定义其他方法用来操作数据，而基本数据类型不能像引用类型那样有自己的内置方法对数据进行更多的操作。</p>
+<p>但基本数据类型真的没有吗？</p>
+<p>对于部分基本类型来说确实是这样的。</p>
+<p>按照最新 ES 标准定义，基本数据类型(primitive value)包括 Undefined, Null, Boolean, Number, Symbol, String。</p>
+<p><strong>在这 6 个基本数据类型中，其中有 3 个是 ES 提供的特殊引用类型（基本包装类型）</strong>：Boolean, Number, String。</p>
+<p><strong>基本包装类型，和其他引用类型一样，拥有内置的方法可以对数据进行额外操作。</strong><br>如下：</p>
+<pre><code>let str = &#39;test&#39;
+let str2 = str.substring(2)
+console.log(str2) //st</code></pre><p>上面 str 变量存储的值是一个字符串，’test’ 字符串是基本数据类型 String 类型的值。按照常理来说，字符串不是引用类型，所以它不应该有自己的方法，第二行代码应该报错才对。</p>
+<p>字符串 ‘test’ 确实不应该有自己的方法，但是在<strong>执行第二行代码时</strong>，后台会<strong>自动进行下面的步骤</strong>：<br>1.自动创建 String 类型的一个实例（和基本类型的值不同，这个实例就是一个基本包装类型的对象）<br>2.调用实例（对象）上指定的方法<br>3.销毁这个实例</p>
+<p>用代码的方式解释就是如下：</p>
+<pre><code>//用 String 构造函数创建一个实例，这个实例是一个对象
+let str = new String(&#39;test&#39;)
+//对象中有内置方法供开发人员调用
+let str2 = str.substring()
+str = null</code></pre><p>虽然基本类型的值没有方法可以调用，但是后台<strong>临时</strong>创建的构造函数实例（也就是对象）上有内置方法可以让我们对值进行操作，因此这样我们就可以对字符串、数值、布尔值这三种基本数据类型的数据进行更多操作，这也是<strong>基本包装类型的主要用处：便于操作基本类型值。</strong></p>
+<p>而什么时候后台会自动创建一个对应的基本包装类型的对象，取决于当前执行的代码是否是为了获取他的值。<br>每当读取一个基本类型的值，也就是当我们需要从内存中获取到他的值时（这个访问过程称为读取模式），这时，后台就会自动创建一个基本包装类型的对象。<br>如下：</p>
+<pre><code>let test = &#39;hhh&#39;
+console.log(test) //读取模式，后台自动创建基本包装类型对象
+let test2 = test //赋值给变量 test2，也需要读取 test 的值，同上</code></pre><p><strong>基本包装类型的对象</strong>和<strong>引用类型的对象</strong>最大的一个<strong>区别</strong>是，对象的生存期不同，导致的一个结果就是，<strong>基本包装类型无法自定义自己的方法。</strong></p>
+<p>对于引用类型的数据，在执行流离开当前作用域之前都会保存在内存中，而对于自动创建的基本包装类型的对象，只存在于一行代码的执行瞬间，执行完毕就会立即被销毁。<br>如下：</p>
+<pre><code>let str = &#39;test&#39;
+str.test = &#39;hhh&#39;
+console.log(str.test) //undefined</code></pre><p>上面第二行代码给自动创建的 String 实例对象添加了 test 属性，虽然此刻代码执行时他是生效的，但是在这行代码执行完毕后该 String 实例就会立刻被销毁，String 实例的 test 属性也就不存在了。<br>当执行第三行代码时，由于是读取模式，又重新创建了新的 String 实例，而这个新创建的 String 实例没有 test 属性，结果也就是 undefined。</p>
+<p>87.<strong>Boolean类型</strong></p>
+<p>88.<strong>Number类型</strong></p>
+<ul>
+<li><p>重写了valueOf()、toLocaleString()和toString()，重写后<strong>valueOf()</strong>方法返回表示基本类型的数值，<strong>toLocaleString()</strong>和<strong>toString()</strong>方法返回字符串形式的数值。其中toString()方法可传递一个表示基数的参数。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> num<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//'10'</span>
+<span class="token keyword">var</span> a2 <span class="token operator">=</span> num<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//'1010'</span>
+<span class="token keyword">var</span> b <span class="token operator">=</span> num<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">//10</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//string </span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">//number</span></code></pre>
+</li>
+<li><p><strong>toFixed()</strong>方法会按照指定的小数位返回数值的字符串表示，接收一个参数表示保留多少位小数。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//'10.00'</span></code></pre>
+</li>
+<li><p><strong>toExponential()</strong>方法返回以指数表示法(e表示法)表示的数值的字符串形式，接收一个参数表示输出结果中的小数位数。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">toExponential</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//'1.0e+1'</span></code></pre>
+</li>
+<li><p><strong>toPrecision()</strong>方法返回固定大小格式，也可能返回指数位数(不包括指数部分)。实际上会根据处理的数值决定到底调用toFixed()还是调用toExponential()。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">toPrecision</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//'1e+2'</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">toPrecision</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//'99'</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>num<span class="token punctuation">.</span><span class="token function">toPrecision</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//'99.0'</span></code></pre>
+</li>
+</ul>
+<p>以上3个将数值格式化为字符串的方法，都可以通过向上或向下舍入，做到以最准确的形式来表示带有正确小数位的值。但需注意不同浏览器舍入的规则可能会不同。</p>
+<p>89.<strong>String类型</strong></p>
+<ul>
+<li></li>
+</ul>
 
             </div>
             <hr/>
