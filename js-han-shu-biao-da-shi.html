@@ -614,7 +614,7 @@
 })();   </code></pre>
 <p>由于Javascript将function关键字当作一个函数的声明，而函数声明后面是不能跟圆括号的。因此要给他<strong>加上一对圆括号</strong>，将函数声明转换成函数表达式，就不会报错。</p>
 <p>无论在什么地方，只要临时需要一些变量，就可以用私有作用域。也被常用在函数外部，从而限制向全局作用域中添加过多变量和函数</p>
-<h2 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h2><p>任何在函数中定义的变量，都可以认为是私有变量。利用闭包，可以访问到这些变量。我们把有权访问私有变量和私有函数的公有方法称为<strong>特权方法</strong>，有两种在对象上创建特权方法的方式；</p>
+<h2 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h2><p>任何在函数中定义的变量，都可以认为是<strong>私有变量</strong>。利用闭包，可以访问到这些变量。我们把有权访问私有变量和私有函数的公有方法称为<strong>特权方法</strong>，有两种在对象上创建特权方法的方式；</p>
 <ul>
 <li><p><strong>在构造函数中定义特权方法</strong></p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">MyObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -647,6 +647,8 @@ person<span class="token punctuation">.</span><span class="token function">setNa
 <p>getName()和setName()都有权在构造函数外部使用，而且都有权访问私有变量name。但在Person构造函数外部，没有任何方法访问name。</p>
 <p>构造函数模式的<strong>缺点是针对每一个实例都会创建同样一组方法。</strong></p>
 </li>
+</ul>
+<h3 id="静态私有变量"><a href="#静态私有变量" class="headerlink" title="静态私有变量"></a>静态私有变量</h3><ul>
 <li><p><strong>在私有作用域中定义私有变量或函数，同样也可创建特权方法</strong></p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//私有变量和私有函数</span>
@@ -671,7 +673,7 @@ person<span class="token punctuation">.</span><span class="token function">setNa
 <p>以这种方式创建静态私有变量会因为使用原型而增进代码复用，但<strong>每个实例都没有自己的私有变量</strong>。</p>
 </li>
 </ul>
-<h2 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h2><p>前面的模式都是用于为自定义类型创建私有变量和特权方法的。<strong>模块模式则是为单例创建私有变量和方法，单例指的就是只有一个实例的对象，javascript是以对象字面量的方式来创建单例对象的</strong>。</p>
+<h3 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h3><p>前面的模式都是用于为自定义类型创建私有变量和特权方法的。<strong>模块模式则是为单例创建私有变量和方法，单例指的就是只有一个实例的对象，javascript是以对象字面量的方式来创建单例对象的</strong>。</p>
 <p>———————————没懂———————————</p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> singleton <span class="token operator">=</span> <span class="token punctuation">{</span>
     name<span class="token punctuation">:</span> value<span class="token punctuation">,</span>
@@ -752,7 +754,7 @@ person<span class="token punctuation">.</span><span class="token function">setNa
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lvjinhao821.github.io/han-shu-biao-da-shi.html">https://lvjinhao821.github.io/han-shu-biao-da-shi.html</a>
+                    <a href="https://lvjinhao821.github.io/js-han-shu-biao-da-shi.html">https://lvjinhao821.github.io/js-han-shu-biao-da-shi.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1235,7 +1237,7 @@ person<span class="token punctuation">.</span><span class="token function">setNa
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/han-shu-biao-da-shi.html">
+                <a href="/js-han-shu-biao-da-shi.html">
                     <div class="card-image">
                         
                         
