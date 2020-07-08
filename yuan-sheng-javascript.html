@@ -559,7 +559,7 @@
 </li>
 </ul>
 <p>14.<strong>String类型</strong>用于表示由零或多个16位Unicode字符组成的字符序列，包含一些特殊的字符字面量(见p33).任何字符串的长度都可以通过length属性取得。ECMAScript中的字符是不可变的，也就是说字符一旦创建，他们的值就不能改变了，参照下图理解。(简单类型都是不可变的，复杂类型可变)</p>
-<p><img src="http://qaxevdow7.bkt.clouddn.com/book1.png" alt="简单类型都是不可变的，复杂类型可变"></p>
+<p><img src="http://blog.lvjinhao.com/book1.png" alt="简单类型都是不可变的，复杂类型可变"></p>
 <p><strong>将值转换为字符串</strong>；</p>
 <ul>
 <li><p>使用几乎每个值都有的<strong>toString()</strong>方法，null和undefined没有这个方法。多数情况下都不必传递参数，但调用数值的toScring()方法时，可传递一个参数：输出数值的参数。</p>
@@ -788,7 +788,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>局部作用域：通常指函数作用域，其变量叫局部变量，只能在函数内访问。函数调用完成后就会立即销毁。</li>
 </ul>
 <p>每个作用域都有一个与之关联的<strong>变量对象</strong>，作用域中定义的所有变量和函数都保存在这个对象中。全局作用域是最外围的一个作用域，在web浏览器中，全局作用域被认为是window对象。因此所有全局变量和函数都是作为window对象的属性和方法创建的。每个函数都有自己的局部作用域。每次进入一个新的作用域时，都会创建一个用于搜索变量和函数的<strong>作用域链</strong>。作用域链的用途是保证按特定规则有序访问变量和函数。作用域的前端，始终是当前执行代码所在作用域的变量对象；作用域链中下一个变量对象来自下一个包含关系的作用域；再下一个变量对象则来自于下一个包含关系的作用域。</p>
-<p><img src="http://qaxevdow7.bkt.clouddn.com/book3.png" alt=""></p>
+<p><img src="http://blog.lvjinhao.com/book3.png" alt=""></p>
 <p>每个作用域都可以向上搜索作用域链，以查询变量和函数名。但任何作用域都不能通过向下搜索作用域链而进入另一个作用域。</p>
 <p>41.在某个环境中为了读取或写入而引用一个标识符时，必须通过<strong>搜索</strong>来确定该标识符实际代表什么。搜索过程从作用域链的前端开始，一直追溯到全局环境的变量对象。如果局部环境中存在着同名标识符，就不会使用父环境中的标识符。</p>
 <p>42.javascript解析机制（预解析&gt;&gt;逐行解读代码）</p>
