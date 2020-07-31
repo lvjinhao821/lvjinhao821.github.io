@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lvjinhao821.github.io/"/>
-  <updated>2020-06-27T03:28:57.738Z</updated>
+  <updated>2020-07-31T09:28:19.963Z</updated>
   <id>https://lvjinhao821.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于模型表达程度的简述</title>
+    <link href="https://lvjinhao821.github.io/bim-mo-xing-biao-da-cheng-du-jian-shu.html"/>
+    <id>https://lvjinhao821.github.io/bim-mo-xing-biao-da-cheng-du-jian-shu.html</id>
+    <published>2020-07-21T06:55:00.000Z</published>
+    <updated>2020-07-31T09:28:19.963Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;BIM简介&quot;&gt;&lt;a href=&quot;#BIM简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="BIM" scheme="https://lvjinhao821.github.io/categories/BIM/"/>
+    
+    
+      <category term="BIM" scheme="https://lvjinhao821.github.io/tags/BIM/"/>
+    
+      <category term="几何信息" scheme="https://lvjinhao821.github.io/tags/%E5%87%A0%E4%BD%95%E4%BF%A1%E6%81%AF/"/>
+    
+      <category term="属性信息" scheme="https://lvjinhao821.github.io/tags/%E5%B1%9E%E6%80%A7%E4%BF%A1%E6%81%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>js函数表达式</title>
